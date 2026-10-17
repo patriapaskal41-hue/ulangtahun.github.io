@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;800&display=swap');
+
+:root {
+  --pink: #ff6f91;
+  --purple: #7b61a8;
+  --ink: #352b45;
+  --cream: #fffaf4;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 28px 16px;
+  overflow-x: hidden;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 15%, #ffe0eb 0, transparent 28%),
+    radial-gradient(circle at 88% 82%, #e8ddff 0, transparent 30%),
+    linear-gradient(135deg, #fff8f0, #fff0f6 55%, #f2edff);
+}
+
+.birthday-card {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 620px);
+  padding: clamp(28px, 6vw, 54px);
+  text-align: center;
+  border: 1px solid rgba(255,255,255,.85);
+  border-radius: 30px;
+  background: rgba(255,255,255,.78);
+  box-shadow: 0 24px 70px rgba(91, 64, 112, .15);
+  backdrop-filter: blur(12px);
+  animation: appear .8s ease both;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--purple);
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .17em;
+}
+
+.cake {
+  font-size: clamp(4rem, 12vw, 6rem);
+  filter: drop-shadow(0 8px 10px rgba(123, 97, 168, .18));
+  animation: bob 3s ease-in-out infinite;
+}
+
+h1 {
+  margin: 14px 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: clamp(2rem, 7vw, 3.5rem);
+  line-height: 1.13;
+}
+
+h1 span {
+  color: var(--pink);
+  overflow-wrap: anywhere;
+}
+
+.intro {
+  max-width: 440px;
+  margin: 0 auto 25px;
+  color: #756b80;
+  line-height: 1.8;
+}
+
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 15px 25px;
+  color: white;
+  background: linear-gradient(135deg, #ff7296, #9a75d5);
+  box-shadow: 0 10px 24px rgba(210, 106, 166, .28);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+
+button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(210, 106, 166, .36);
+}
+
+button:focus-visible { outline: 3px solid #7b61a8; outline-offset: 4px; }
+
+.surprise {
+  margin-top: 26px;
+  padding: 22px;
+  border-radius: 20px;
+  background: #fff3f7;
+  animation: appear .5s ease both;
+}
+
+.surprise h2 { margin: 0 0 10px; font-size: 1.2rem; }
+.surprise p { color: #6f627b; line-height: 1.8; }
+.surprise .signature { color: #d65383; font-weight: 700; }
+
+.hidden { display: none; }
+
+.footer {
+  margin: 28px 0 0;
+  color: #a196ad;
+  font-size: .78rem;
+}
+
+.balloons span {
+  position: fixed;
+  z-index: 1;
+  bottom: -100px;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  opacity: .75;
+  animation: floatUp 13s linear infinite;
+}
+.balloons span:nth-child(1) { left: 8%; animation-delay: 0s; }
+.balloons span:nth-child(2) { left: 28%; animation-delay: 4s; }
+.balloons span:nth-child(3) { left: 70%; animation-delay: 2s; }
+.balloons span:nth-child(4) { left: 88%; animation-delay: 6s; }
+.balloons span:nth-child(5) { left: 52%; animation-delay: 8s; }
+
+.confetti-layer { position: fixed; inset: 0; pointer-events: none; z-index: 5; overflow: hidden; }
+.confetti {
+  position: absolute;
+  top: -20px;
+  width: 9px;
+  height: 14px;
+  border-radius: 3px;
+  animation: fall 2.8s linear forwards;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0) rotate(0); }
+  to { transform: translateY(-120vh) rotate(25deg); }
+}
+@keyframes bob { 0%, 100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-8px) rotate(2deg); } }
+@keyframes appear { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes fall { to { transform: translateY(110vh) rotate(720deg); opacity: .2; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+}
